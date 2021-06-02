@@ -22,7 +22,7 @@ SECRET_KEY = '8f3gg$1*l(2%!p%rot2q9a4xb1!u8o78)$o9irc=$)63f42-rq'
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 
-PRODUCTION_READY = os.environ.get('PRODUCTION_READY', True)
+PRODUCTION_READY = os.environ.get('PRODUCTION_READY', False)
 
 # Application definition
 
@@ -126,14 +126,15 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000"
 ]
 
-CACHE_TTL = 60
+CACHE_TTL = 60 * 15
 
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
         "LOCATION": "redis://127.0.0.1:6379/1",
+        "TIMEOUT": 60 * 60 * 24,
         "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient"
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
         },
         "KEY_PREFIX": "example"
     }

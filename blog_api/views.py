@@ -23,6 +23,7 @@ class PostListCreateView(APIView):
     def get(self, request, *args, **kwargs):
         a = ""
         if cache.get('post_list'):
+            print(cache.get('post_list'))
             print('cache--------')
             a = cache.get('post_list')
         else:
